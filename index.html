@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game Vault — your game archive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="glow-field" aria-hidden="true"></div>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark"></span>
+    <span class="brand-name">Game Vault</span>
+  </div>
+  <div class="topbar-time" id="clock"></div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="hero-text">
+      <p class="hero-eyebrow" id="dateLine"></p>
+      <h1 id="greeting">Loading, gamer.</h1>
+      <p class="hero-sub">Every game you've finished, abandoned, or fallen in love with — kept in one place, rated on your own terms.</p>
+      <button class="btn-primary" id="openFormBtn">Add a game</button>
+    </div>
+
+    <div class="hero-panel" aria-label="Your archive at a glance">
+      <div class="panel-row">
+        <div class="panel-stat">
+          <span class="panel-value" id="statTotal">0</span>
+          <span class="panel-label">games logged</span>
+        </div>
+        <div class="panel-stat">
+          <span class="panel-value" id="statAvg">—</span>
+          <span class="panel-label">average rating</span>
+        </div>
+      </div>
+      <div class="panel-divider"></div>
+      <div class="panel-top" id="panelTop">
+        <span class="panel-label">highest rated</span>
+        <span class="panel-top-name" id="statTopName">Nothing logged yet</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="library">
+    <div class="library-controls">
+      <div class="search-wrap">
+        <input type="text" id="searchInput" placeholder="Search your archive" autocomplete="off">
+      </div>
+      <select id="sortSelect">
+        <option value="recent">Recently added</option>
+        <option value="ratingHigh">Highest rated</option>
+        <option value="ratingLow">Lowest rated</option>
+        <option value="az">Title, A–Z</option>
+      </select>
+    </div>
+
+    <div class="grid" id="gameGrid"></div>
+
+    <div class="empty-state" id="emptyState">
+      <p class="empty-title">Your archive is empty</p>
+      <p class="empty-sub">Add the first game you remember finishing — the rest will follow.</p>
+    </div>
+  </section>
+
+</main>
+
+
+<div class="overlay" id="overlay"></div>
+<aside class="form-panel" id="formPanel" aria-hidden="true">
+  <div class="form-panel-head">
+    <h2 id="formTitle">Add a game</h2>
+    <button class="icon-btn" id="closeFormBtn" aria-label="Close">✕</button>
+  </div>
+
+  <form id="gameForm">
+    <input type="hidden" id="gameId">
+
+    <label for="titleInput">Title</label>
+    <input type="text" id="titleInput" required placeholder="e.g. Hollow Knight">
+
+    <div class="field-row">
+      <div class="field-col">
+        <label for="platformInput">Platform</label>
+        <select id="platformInput">
+          <option>PC</option>
+          <option>PlayStation</option>
+          <option>Xbox</option>
+          <option>Nintendo Switch</option>
+          <option>Mobile</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="field-col">
+        <label for="yearInput">Year played</label>
+        <input type="number" id="yearInput" placeholder="2024" min="1970" max="2100">
+      </div>
+    </div>
+
+    <label for="genreInput">Genre <span class="optional">optional</span></label>
+    <input type="text" id="genreInput" placeholder="e.g. Metroidvania">
+
+    <label for="ratingInput">Your rating — <span id="ratingValue">7.5</span> / 10</label>
+    <input type="range" id="ratingInput" min="0" max="10" step="0.5" value="7.5">
+
+    <label for="noteInput">A line about it <span class="optional">optional</span></label>
+    <textarea id="noteInput" rows="2" placeholder="What made it stick with you"></textarea>
+
+    <div class="form-actions">
+      <button type="button" class="btn-ghost" id="deleteBtn">Remove</button>
+      <button type="submit" class="btn-primary">Save to archive</button>
+    </div>
+  </form>
+</aside>
+
+<script src="script.js"></script>
+</body>
+</html>
